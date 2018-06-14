@@ -39,10 +39,10 @@ async function getDividendData(stockCode){
         const $ = cheerio.load(res.data);
         let dividend = [];
         $('tr[bgcolor="#FFFFFF"]').each((i,e)=>{
-            let year = $(e).children().eq(0).text();
-            let cashDividend = $(e).children().eq(1).text();
-            let stockDividend = $(e).children().eq(4).text();
-            let totalDividend = $(e).children().eq(5).text();        
+            let year = Number($(e).children().eq(0).text());
+            let cashDividend = Number($(e).children().eq(1).text());
+            let stockDividend = Number($(e).children().eq(4).text());
+            let totalDividend = Number($(e).children().eq(5).text());        
             dividend.push({year,cashDividend,stockDividend,totalDividend})
         })      
         return(dividend)  
