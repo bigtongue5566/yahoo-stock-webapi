@@ -23,14 +23,14 @@ async function getBasicData(stockCode){
     const api = 'https://quality.data.gov.tw/dq_download_json.php?nid=18419&md5_url=4932a781923479c4c782e8a07078d9e9';
     const otcApi = 'https://quality.data.gov.tw/dq_download_json.php?nid=25036&md5_url=f915a69e3f23cda7ff53026c1c890926';
     let listOfCompanyData = await axios.get(api).then(res=>{
-        return(res.data)
+        return res.data
     })
     let listOfOtcCompanyData = await axios.get(otcApi).then(res=>{
-        return(res.data)
+        return res.data
     })
     let allCompanyData = listOfCompanyData.concat(listOfOtcCompanyData)
     let companyData = allCompanyData.filter(e=>e['公司代號']==stockCode+'')[0]
-    return(companyData)
+    return companyData
 }
 
 
@@ -45,9 +45,9 @@ async function getDividendData(stockCode){
             let totalDividend = Number($(e).children().eq(5).text());        
             dividend.push({year,cashDividend,stockDividend,totalDividend})
         })      
-        return(dividend)  
+        return dividend
     })
-    return(pastDividend)
+    return pastDividend
 }
 
 
