@@ -38,7 +38,7 @@ async function getDividendData(stockCode){
     let pastDividend = await axios.get(`https://tw.stock.yahoo.com/d/s/dividend_${stockCode}.html`).then(res=>{
         const $ = cheerio.load(res.data);
         let dividend = [];
-        $('tr[bgcolor="#FFFFFF"]').slice(0, 5).each((i,e)=>{
+        $('tr[bgcolor="#FFFFFF"]').each((i,e)=>{
             let year = $(e).children().eq(0).text();
             let cashDividend = $(e).children().eq(1).text();
             let stockDividend = $(e).children().eq(4).text();
