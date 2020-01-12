@@ -20,8 +20,8 @@ app.get('/:stockcode/dividend',(req,res)=>{
 
 
 async function getBasicData(stockCode){
-    const api = 'https://quality.data.gov.tw/dq_download_json.php?nid=18419&md5_url=4932a781923479c4c782e8a07078d9e9';
-    const otcApi = 'https://quality.data.gov.tw/dq_download_json.php?nid=25036&md5_url=f915a69e3f23cda7ff53026c1c890926';
+    const api = 'https://quality.data.gov.tw/dq_download_json.php?nid=18419&md5_url=9791ec942cbcb925635aa5612ae95588';
+    const otcApi = 'http://quality.data.nat.gov.tw/dq_download_json.php?nid=18418&md5_url=f6e39ed622df527dc2281c415e0ad278';
     let listOfCompanyData = await axios.get(api).then(res=>{
         return res.data
     })
@@ -42,9 +42,9 @@ async function getDividendData(stockCode){
             let year = Number($(e).children().eq(0).text());
             let cashDividend = Number($(e).children().eq(1).text());
             let stockDividend = Number($(e).children().eq(4).text());
-            let totalDividend = Number($(e).children().eq(5).text());        
+            let totalDividend = Number($(e).children().eq(5).text());
             dividend.push({year,cashDividend,stockDividend,totalDividend})
-        })      
+        })
         return dividend
     })
     return pastDividend
